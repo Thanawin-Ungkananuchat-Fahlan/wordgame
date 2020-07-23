@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+  <html lang="en">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Word Game | Longdo Dict</title>
+      <link href="style.css" type="text/css" rel="stylesheet">
+      <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body onload="init()">
+      <div class="game">
+        <strong id="score"></strong><br>
+        <button type="button" onclick="GameStart()" id="start">START</button><br>
+        <strong id="ans"></strong><br>
+        <div class="quiz" id="quiz">
+          <button type="button" onclick="hearsound()" id="repeat">&#128266</button><br>
+          <input type="text" id="word" value="" onchange="matchword()"><span id="words"> </span><br>
+          <input type="text" id="sound" value="" onchange="matchsound()"><span id="sounds"> </span><br>
+          <button type="button" onclick="next()" id="next">Next</button>
+          <button type="button" onclick="giveup()" id="stop">Give up</button><br>
+        </div>
+      </div>
+    </body>
+  </html>
