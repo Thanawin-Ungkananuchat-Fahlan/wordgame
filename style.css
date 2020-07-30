@@ -66,4 +66,6 @@ span {
 
 #word, #sound {
     font-size: xx-large;
+    line-height: normal;
+    
 }

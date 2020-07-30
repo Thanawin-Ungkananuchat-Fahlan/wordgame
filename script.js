@@ -7,26 +7,25 @@ var msg;
 var word; var words;
 var sound; var sounds;
 var ans = false; var wer = false;
+function loadphp() {
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            dict = JSON.parse(this.responseText);  
+            console.log(dict);   
+            document.getElementById('start').style.display = "inline-block";       
+         }
+    };
+    xhttp.open("GET", "http://localhost/wordgame/Get.php", true);
+    xhttp.send();   
+}
+
 function init() {
     word = document.getElementById('word');
     words = document.getElementById('words');
     sound = document.getElementById('sound');
     sounds = document.getElementById('sounds');
-    wordfreq();
-}
-
-function wordfreq() {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        console.log(xhttp.readyState);
-        if (this.readyState == 4 && this.status == 200) {
-            dict = JSON.parse(this.responseText);
-            console.log(dict);
-            document.getElementById('start').style.display = "inline-block";
-        }
-    };
-    xhttp.open("GET", "output.txt", true);
-    xhttp.send();   
+    loadphp();
 }
 
 function GameStart() {
@@ -38,13 +37,10 @@ function GameStart() {
     question();
 }
 function question() {
-    var num = dict.length;
-    rand = Math.floor(Math.random() * num);
-    vocab = dict[rand];
+    vocab = dict[times];
     document.getElementById('ans').innerHTML = vocab[0]; 
     hearsound();
 }
-
 
 function hearsound() {
     msg = new SpeechSynthesisUtterance(vocab[0]);
@@ -52,8 +48,6 @@ function hearsound() {
 }
 
 function matchword() {
-    word = document.getElementById('word');
-    words = document.getElementById('words');
     word.value = word.value.toLowerCase();
     if (word.value == vocab[0]) {
         ans = true;
@@ -68,8 +62,6 @@ function matchword() {
 }
 
 function matchsound() {
-    sound = document.getElementById('sound');
-    sounds = document.getElementById('sounds');
     sound.value = sound.value.toUpperCase();
     for (let index = 1; index < vocab.length; index++) {
         if (sound.value == vocab[index]) {
@@ -120,4 +112,5 @@ function end() {
     document.getElementById('ans').innerHTML = ''; 
     document.getElementById('quiz').style.display = "none";
     document.getElementById('start').style.display = "inline-block";
+    loadphp();
 }
