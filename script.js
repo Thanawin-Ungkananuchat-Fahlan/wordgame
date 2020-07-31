@@ -89,10 +89,24 @@ function next() {
     } else {
         score = score
     }
-    giveup();
+    nextquiz();
 }
 
 function giveup() {
+    word.value = vocab[0];
+    sound.value = vocab[1];
+    document.getElementById('next').setAttribute('disabled', true);    
+    document.getElementById('stop').addEventListener('click', giveup2);
+    
+}
+
+function giveup2() {
+    document.getElementById('next').removeAttribute('disabled');    
+    document.getElementById('stop').removeEventListener('click', giveup2)
+    nextquiz();
+}
+
+function nextquiz() {
     word.value = '';
     sound.value = '';
     words.innerHTML = '';

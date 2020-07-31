@@ -1,7 +1,7 @@
 <?php
 header("Content-type:application/json");
 $myfile = fopen("output.txt", "r") or die("Unable to open file!");
-$var = fread($myfile,filesize("test.txt"));
+$var = fread($myfile,filesize("output.txt"));
 $arr = json_decode($var, true);
 $array = array();
 
