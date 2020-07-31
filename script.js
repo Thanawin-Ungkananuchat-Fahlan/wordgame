@@ -95,18 +95,13 @@ function next() {
 function giveup() {
     word.value = vocab[0];
     sound.value = vocab[1];
-    document.getElementById('next').setAttribute('disabled', true);    
-    document.getElementById('stop').addEventListener('click', giveup2);
-    
-}
-
-function giveup2() {
-    document.getElementById('next').removeAttribute('disabled');    
-    document.getElementById('stop').removeEventListener('click', giveup2)
-    nextquiz();
+    matchword();
+    matchsound();
+    document.getElementById('stop').setAttribute('disabled', true); 
 }
 
 function nextquiz() {
+    document.getElementById('stop').removeAttribute('disabled');    
     word.value = '';
     sound.value = '';
     words.innerHTML = '';
