@@ -16,7 +16,7 @@ function loadphp() {
             document.getElementById('start').style.display = "inline-block";       
          }
     };
-    xhttp.open("GET", "http://localhost/wordgame/Get.php", true);
+    xhttp.open("GET", "Get.php", true);
     xhttp.send();   
 }
 
